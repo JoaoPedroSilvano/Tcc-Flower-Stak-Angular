@@ -25,6 +25,9 @@ import { MenuGeralComponent } from './components/menu-geral/menu-geral.component
 import { MenuFooterComponent } from './components/menu-footer/menu-footer.component';
 import { ModalFecharCompraComponent } from './components/models/modal-fecharcompra/modal-fecharcompra.component';
 import { ModalPersonalizacaoComponent } from './components/models/modal-personalizacao/modal-personalizacao.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,14 @@ import { ModalPersonalizacaoComponent } from './components/models/modal-personal
     NgbModule,
     MatGridListModule,
     MatDialogModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [

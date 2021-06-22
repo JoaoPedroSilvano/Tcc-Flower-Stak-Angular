@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuGeralComponent implements OnInit {
 
-  constructor() { }
+  setLogin: boolean;
+
+  constructor() { 
+    this.setLogin = true;
+  }
 
   ngOnInit(): void {
+    this.setLogin = localStorage.getItem('idCliente') ? true : false
   }
 
 }

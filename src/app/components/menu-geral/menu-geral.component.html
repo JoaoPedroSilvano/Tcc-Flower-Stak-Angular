@@ -20,11 +20,14 @@
                     <li class="nav-item">
                         <a [routerLink]="['contato']" class="nav-link">Contato</a>
                     </li>
-                    <li class="nav-item">
+                    <li *ngIf="setLogin == false" class="nav-item">
                         <a [routerLink]="['login']" class="nav-link">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a [routerLink]="['meuperfil']" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <a *ngIf="setLogin == false" [routerLink]="['login']" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+              </svg></a>
+                        <a *ngIf="setLogin == true" [routerLink]="['meuperfil']" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
               </svg></a>
                     </li>

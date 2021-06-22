@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pedidos } from '../../../models/pedidos';
+import { Pedidos } from '../../models/pedidos';
 
 @Component({
   selector: 'app-pagina-perfil',
