@@ -55,27 +55,27 @@
                 <div class="container">
                     <div class="row justify-content-center mb-5">
                         <div class="col-sm-12 col-md-10 col-lg-8 colorform ">
-                            <form class="">
+                            <div class="">
                                 <div class="form-row ">
                                     <div class="form-group col-sm-12 ">
                                         <label for="nome"><strong>Nome</strong></label>
-                                        <input type="text" class="mt-1 form-control form-radius" id="nome" placeholder="Digite seu nome:">
+                                        <input [(ngModel)]="GerarEnvioEmail.nome" type="text" class="mt-1 form-control form-radius" id="nome" placeholder="Digite seu nome:">
                                         <label for="email"><strong>Email</strong></label>
-                                        <input type="email" class="mt-1 form-control form-radius" id="email" placeholder="Digite seu email:">
+                                        <input [(ngModel)]="GerarEnvioEmail.email" type="email" class="mt-1 form-control form-radius" id="email" placeholder="Digite seu email:">
                                         <label for="tel"><strong>Telefone</strong></label>
-                                        <input type="tel" class="mt-1 form-control form-radius" id="tel" placeholder="Digite seu telefone:">
+                                        <input [(ngModel)]="GerarEnvioEmail.telefone" type="tel" class="mt-1 form-control form-radius" id="tel" placeholder="Digite seu telefone:">
                                         <label for="assunto"><strong>Assunto</strong></label>
                                         <div class=" text-center">
-                                            <textarea class="mt-1 form-control form-radius" rows="10" cols="95" maxlength="400" placeholder="Digite o assunto:"></textarea>
+                                            <textarea [(ngModel)]="GerarEnvioEmail.assunto" class="mt-1 form-control form-radius" rows="10" cols="95" maxlength="400" placeholder="Digite o assunto:"></textarea>
                                         </div>
                                         <div class="form-row">
                                             <div class="col-sm-12 text-center marginbutton">
-                                                <button type="submit" class="mt-2 btn btn1 btn-primary buttonform">Enviar</button>
+                                                <button (click)="enviarEmail()" type="submit" class="mt-2 btn btn1 btn-primary buttonform">Enviar</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

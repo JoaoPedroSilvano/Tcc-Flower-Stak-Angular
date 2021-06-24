@@ -4,7 +4,7 @@ export class Produtos {
     nome: string;
     descricao: string;
     foto: string;
-    quantidade: string;
+    quantidade: number;
     valor: number;
     idTipoProduto: number;
     idTipoProdutoNavigation: null;
@@ -15,7 +15,7 @@ export class Produtos {
         this.descricao = '';
         this.valor = 0;
         this.foto = '';
-        this.quantidade = '';
+        this.quantidade = 0;
         this.idTipoProduto = 0;
         this.idTipoProdutoNavigation = null;
         

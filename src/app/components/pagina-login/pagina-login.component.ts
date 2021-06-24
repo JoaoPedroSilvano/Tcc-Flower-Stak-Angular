@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
 export class PaginaLoginComponent implements OnInit {
 
   switchMode: boolean;
+  localidade: any;
+  produtosId: Array<Number>;
 
   GerarCadastro: Cliente;
   Login: LoginType;
@@ -20,6 +22,7 @@ export class PaginaLoginComponent implements OnInit {
     this.switchMode = false;
     this.GerarCadastro = new Cliente();
     this.Login = new LoginType();
+    this.produtosId = new Array<Number>();
   }
 
   ngOnInit(): void {
@@ -29,7 +32,14 @@ export class PaginaLoginComponent implements OnInit {
     this.switchMode = !this.switchMode;
   }
 
+  changeCep() {
+    this.clienteService.buscarReferencia(Number(this.GerarCadastro.cep)).subscribe(resp => {
+      this.localidade = `${resp.logradouro}, ${resp.localidade}-${resp.uf}`
+    });
+  }
+
   cadastrarCliente() {
+    this.GerarCadastro.endereco = this.localidade + ' - ' + this.GerarCadastro.numero + ' - ' + this.GerarCadastro.complemento;
     this.clienteService.inserirCliente(this.GerarCadastro).subscribe(resp => {
       console.log(resp);
       Swal.fire(
@@ -37,7 +47,7 @@ export class PaginaLoginComponent implements OnInit {
         '',
         'success'
         )
-        this.router.navigate(['login', '/']);
+        location.reload();
     }, error => {
       Swal.fire(
         'Erro ao Cadastrar!',
@@ -53,6 +63,7 @@ export class PaginaLoginComponent implements OnInit {
       if (resp.length > 0) {
         localStorage.setItem('idCliente', resp[0].id);
         Swal.fire('Logado!', '', 'success').then(() => {
+          localStorage.setItem('ItensCarrinho', JSON.stringify(this.produtosId))
           this.router.navigate(['/', 'meuperfil']).then(x => location.reload());
         });
       } else {

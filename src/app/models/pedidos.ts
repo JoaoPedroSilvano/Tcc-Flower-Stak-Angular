@@ -1,23 +1,25 @@
 import { ItensPedidos } from "./itensPedidos";
 
 export class Pedidos {
-    activeToggle: boolean;
-    numeroPedido: string;
-    produtos: Array<ItensPedidos>;
-    dataPedido: string;
-    valorFrete: string;
-    valorTotalComFrete: string;
-    FormaPagamento: string;
-    valorTotalProdutos: string;
+    activeToggle?: boolean;
+    descricao?: string;
+    ProdutosId?: Array<Number>;
+    dataPedido?: string;
+    valorFrete?: string;
+    valorPagar?: number;
+    valorTotalComFrete?: string;
+    metodoPagamento?: string;
+    valorTotal?: string;
 
     constructor() {
         this.activeToggle = false;
-        this.numeroPedido = '';
+        this.descricao = '';
         this.dataPedido = '';
         this.valorFrete = '';
+        this.valorPagar = 0;
         this.valorTotalComFrete = '';
-        this.FormaPagamento = '';
-        this.produtos = new Array<ItensPedidos>();
-        this.valorTotalProdutos = '';
+        this.metodoPagamento = '';
+        this.ProdutosId = new Array<Number>();
+        this.valorTotal = '';
     }
 }

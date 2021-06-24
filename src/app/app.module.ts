@@ -28,6 +28,7 @@ import { ModalPersonalizacaoComponent } from './components/models/modal-personal
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask'
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatDialogModule,
     MatIconModule,
+    NgxMaskModule,
   ],
   providers: [],
   bootstrap: [

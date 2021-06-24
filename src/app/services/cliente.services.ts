@@ -22,6 +22,15 @@ export class ClienteService {
     const endpoint = `BuscarClientePorId/${id}`;
     return this.http.get<any>(this.environment + endpoint);
   }
+  EnviarEmail(nome: string, telefone: string, email: string, assunto: string){
+    const endpoint = `EnviarEmail?nome=${nome}&telefone=${telefone}&email=${email}&assunto=${assunto}`;
+    return this.http.get<any>(this.environment + endpoint);
+  }
+
+  buscarReferencia(cep: number) {
+    const endpoint =`https://viacep.com.br/ws/${cep}/json/`
+    return this.http.get<any>(endpoint);
+  }
   
   Authentication(login: string, senha: string): Observable<any> {
     const endpoint = `Authentication?login=${login}&senha=${senha}`;

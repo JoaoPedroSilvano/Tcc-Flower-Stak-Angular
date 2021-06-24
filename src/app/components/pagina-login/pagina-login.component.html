@@ -43,15 +43,15 @@
                                         <fieldset class="row gx-3">
                                             <legend style="font-size:18px">Dados Pessoais</legend>
                                             <div class="form-floating mb-3">
-                                                <input [(ngModel)]="GerarCadastro.Nome" class="form-control form-radius" type="text" id="txtNome" placeholder=" " autofocus="">
+                                                <input [(ngModel)]="GerarCadastro.nome" class="form-control form-radius" type="text" id="txtNome" placeholder=" " autofocus="">
                                                 <label for="txtNome">Nome</label>
                                             </div>
                                             <div class="form-floating mb-3 col-md-6 col-xl-4">
-                                                <input [(ngModel)]="GerarCadastro.Cpf" class="form-control form-radius" type="text" id="txtCPF" placeholder=" ">
+                                                <input [(ngModel)]="GerarCadastro.cpf" maxlength="11" class="form-control form-radius" type="text" id="txtCPF" placeholder=" ">
                                                 <label for="txtCPF">CPF</label>
                                             </div>
                                             <div class="form-floating mb-3 col-md-6 col-xl-4">
-                                                <input [(ngModel)]="GerarCadastro.DataNascimento" class="form-control form-radius" type="date" id="txtDataNascimento" placeholder=" ">
+                                                <input [(ngModel)]="GerarCadastro.dataNascimento" class="form-control form-radius" type="date" id="txtDataNascimento" placeholder=" ">
                                                 <label for="txtDataNascimento" class="d-inline d-sm-none d-md-inline d-lg-none">Data
                           Nascimento</label>
                                                 <label for="txtDataNascimento" class="d-none d-sm-inline d-md-none d-lg-inline">Data
@@ -61,11 +61,11 @@
                                         <fieldset>
                                             <legend style="font-size:18px">Contatos</legend>
                                             <div class="form-floating mb-3 col-md-8">
-                                                <input [(ngModel)]="GerarCadastro.Email" class="form-control form-radius" type="email" id="txtEmail" placeholder=" ">
+                                                <input [(ngModel)]="GerarCadastro.email" class="form-control form-radius" type="email" id="txtEmail" placeholder=" ">
                                                 <label for="txtEmail">E-mail</label>
                                             </div>
                                             <div class="form-floating mb-3 col-md-6">
-                                                <input [(ngModel)]="GerarCadastro.Telefone" class="form-control form-radius" placeholder=" " type="text" id="txtTelefone">
+                                                <input [(ngModel)]="GerarCadastro.telefone" maxlength="13" class="form-control form-radius" placeholder=" " type="text" id="txtTelefone">
                                                 <label for="txtTelefone">Telefone</label>
                                             </div>
                                         </fieldset>
@@ -74,7 +74,7 @@
                                         <fieldset class="row gx-3">
                                             <legend style="font-size:18px">Endereço</legend>
                                             <div class="form-floating mb-3 col-md-6 col-lg-4">
-                                                <input [(ngModel)]="GerarCadastro.Cep" class="form-control form-radius" type="text" id="txtCEP" placeholder=" ">
+                                                <input [(ngModel)]="GerarCadastro.cep" (change)="changeCep()" maxlength="8" class="form-control form-radius" type="text" id="txtCEP" placeholder=" ">
                                                 <label for="txtCEP">CEP</label>
                                             </div>
                                             <div class="mb-3 col-md-6 col-lg-8 align-self-end">
@@ -82,22 +82,22 @@
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="form-floating mb-3 col-md-4">
-                                                <input [(ngModel)]="GerarCadastro.Numero" class="form-control form-radius" type="text" id="txtNumero" placeholder=" ">
+                                                <input [(ngModel)]="GerarCadastro.numero" class="form-control form-radius" type="text" id="txtNumero" placeholder=" ">
                                                 <label for="txtNumero">Número</label>
                                             </div>
                                             <div class="form-floating mb-3 col-md-8">
-                                                <input class="form-control form-radius" type="text" id="txtComplemento" placeholder=" ">
+                                                <input [(ngModel)]="GerarCadastro.complemento" class="form-control form-radius" type="text" id="txtComplemento" placeholder=" ">
                                                 <label for="txtComplemento">Complemento</label>
                                             </div>
                                             <div class="form-floating mb-3 ">
-                                                <input class="form-control form-radius" type="text" id="txtReferencia" placeholder=" ">
+                                                <input [(ngModel)]="localidade" (change)="GerarCadastro.referencia = localidade" class="form-control form-radius" type="text" id="txtReferencia" placeholder=" ">
                                                 <label for="txtReferencia">Referência</label>
                                             </div>
                                         </fieldset>
                                         <fieldset class="row gx-3">
                                             <legend style="font-size:18px">Senha de Acesso</legend>
                                             <div class="form-floating mb-3 col-lg-6">
-                                                <input [(ngModel)]="GerarCadastro.Senha" class="form-control form-radius" type="password" id="txtSenha" placeholder=" ">
+                                                <input [(ngModel)]="GerarCadastro.senha" class="form-control form-radius" type="password" id="txtSenha" placeholder=" ">
                                                 <label for="txtSenha">Senha</label>
                                             </div>
                                             <div class="form-floating mb-3 col-lg-6">

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'https://crg.qa.api.despacho.modalgr.com.br/',
+  url: 'https://localhost:5001/',
 };
 
 /*

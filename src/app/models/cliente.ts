@@ -1,29 +1,29 @@
 export class Cliente {
     id: number;
-    Nome: string;
-    Email: string;
-    Senha: string;
-    Cep: string;
-    Cpf: string;
-    Endereco: string;
-    Numero?: string;
-    Complemento?: string;
-    Referencia?: string;
-    Telefone: string;
-    DataNascimento: string;
-    Pedidos: [];
+    nome: string;
+    email: string;
+    senha: string;
+    cep: string;
+    cpf: string;
+    endereco: string;
+    numero?: string;
+    complemento?: string;
+    referencia?: string;
+    telefone: string;
+    dataNascimento: string;
+    pedidos: [];
 
     constructor() {
         this.id = 0;
-        this.Nome = '';
-        this.Email = '';
-        this.Senha = '';
-        this.Cep = '';
-        this.Cpf = '';
-        this.Telefone = '';
-        this.Endereco = `${this.Referencia} + ${this.Numero} + ${this.Complemento}`;
-        this.DataNascimento = '';
-        this.Pedidos = [];
+        this.nome = '';
+        this.email = '';
+        this.senha = '';
+        this.cep = '';
+        this.cpf = '';
+        this.telefone = '';
+        this.endereco = '';
+        this.dataNascimento = '';
+        this.pedidos = [];
     }
     
 }

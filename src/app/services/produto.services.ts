@@ -21,6 +21,12 @@ export class ProdutoService {
     const endpoint = `BuscarProdutosPorId/${id}`;
     return this.http.get<any>(this.environment + endpoint);
   }
+
+  buscarProdutosPorTipoId(tipoId: number): Observable<any> {
+    const endpoint = `BuscarProdutosPorTipo?tipoId=${tipoId}`;
+    return this.http.get<any>(this.environment + endpoint);
+  }
+
   /* POST ------------------------------------------------------*/
   inserirProduto(produto: Produtos): Observable<any> {
     const endpoint = 'CadastrarProduto';

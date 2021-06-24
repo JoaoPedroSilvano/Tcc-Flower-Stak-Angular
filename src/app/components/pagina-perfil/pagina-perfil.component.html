@@ -16,7 +16,7 @@
                         <a style="cursor: pointer;" (click)="switchForm('AlterarSenha')" [ngClass]=" { 'bg-danger text-light': changeForm==='AlterarSenha' } " class="list-group-item list-group-item-action ">
                             <i class="bi-lock fs-6 "></i> Alterar Senha
                         </a>
-                        <a style="cursor: pointer; " class="list-group-item list-group-item-action ">
+                        <a (click)="sair()" style="cursor: pointer; " class="list-group-item list-group-item-action ">
                             <i class="bi-door-open fs-6 "></i> Sair
                         </a>
                     </div>
@@ -31,7 +31,7 @@
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header">
                                                     <button class="accordion-button collapsed" (click)="prod.activeToggle = !prod.activeToggle" type="button" data-bs-toggle="collapse" data-bs-target="#pedido000010">
-                                                        <b>Pedido {{ prod.numeroPedido }}</b>
+                                                        <b>Pedido {{ prod.descricao }}</b>
                                                         <span class="mx-1">(realizado em {{prod.dataPedido}})</span>
                                                     </button>
                                                 </h2>
@@ -46,7 +46,7 @@
                                                                     <th class="text-end">Subtotal</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody *ngFor="let item of prod.produtos">
+                                                            <!-- <tbody *ngFor="let item of prod.produtos">
                                                                 <tr>
                                                                     <td>{{item.nomeProduto}}</td>
                                                                     <td class="text-end">{{item.valorUnitProduto}}</td>
@@ -54,12 +54,12 @@
                                                                     </td>
                                                                     <td class="text-end">{{item.valorTotal}}</td>
                                                                 </tr>
-                                                            </tbody>
+                                                            </tbody> -->
                                                             <tfoot>
                                                                 <tr>
                                                                     <th class="text-end" colspan="3">Valor dos Produtos:
                                                                     </th>
-                                                                    <td class="text-end">{{prod.valorTotalProdutos}}
+                                                                    <td class="text-end">{{prod.valorTotal}}
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -76,7 +76,7 @@
                                                                 <tr>
                                                                     <th class="text-end" colspan="3">Forma de Pagamento:
                                                                     </th>
-                                                                    <td class="text-end">{{prod.FormaPagamento}}</td>
+                                                                    <td class="text-end">{{prod.metodoPagamento}}</td>
                                                                 </tr>
                                                             </tfoot>
                                                         </table>
@@ -91,23 +91,23 @@
                     </div>
                     <div class="row" *ngIf="changeForm === 'AlterarSenha'">
                         <div class="d-flex flex-column col-sm-12 col-md-8 ">
-                            <form>
+                            <div>
                                 <fieldset class="row-gx-3 ">
                                     <div class="form-floating mb-3 col-md-6 col-xl-6 ">
-                                        <input class="form-control form-radius " type="text " id="txtSenhaAntiga " placeholder=" " autofocus=" ">
+                                        <input [(ngModel)]="alterarSenha.senhaAntiga" class="form-control form-radius " type="text " id="txtSenhaAntiga " placeholder=" " autofocus=" ">
                                         <label for="txtNome ">Senha Antiga</label>
                                     </div>
                                     <div class="form-floating mb-3 col-md-6 col-xl-6 ">
-                                        <input class="form-control form-radius " type="text " id="txtSenhaNova " placeholder=" ">
+                                        <input [(ngModel)]="alterarSenha.senhaNova" class="form-control form-radius " type="text " id="txtSenhaNova " placeholder=" ">
                                         <label for="txtCPF ">Senha Nova</label>
                                     </div>
                                     <div class="form-floating mb-3 col-md-6 col-xl-6 ">
-                                        <input class="form-control form-radius " type="text " id="txtreSenhaNova " placeholder=" ">
+                                        <input [(ngModel)]="alterarSenha.confirmarNovaSenha" class="form-control form-radius " type="text " id="txtreSenhaNova " placeholder=" ">
                                         <label for="txtCPF ">Confirmar Senha Nova</label>
                                     </div>
                                 </fieldset>
-                                <a class="btn btn1 btn-primary buttonform m-lg-6 ">Alterar Senha</a>
-                            </form>
+                                <a (click)="atualizarPerfil()" class="btn btn1 btn-primary buttonform m-lg-6 ">Alterar Senha</a>
+                            </div>
                         </div>
                     </div>
                     <div class="row" *ngIf="changeForm === 'DadosPessoais'">
@@ -115,15 +115,15 @@
                             <fieldset class="row gx-3 ">
                                 <legend style="font-size:18px ">Dados Pessoais</legend>
                                 <div class="form-floating mb-3 ">
-                                    <input class="form-control form-radius " type="text " id="txtNome " placeholder=" " autofocus=" ">
+                                    <input readonly [(ngModel)]="perfil.nome" class="form-control form-radius " type="text " id="txtNome " placeholder=" " autofocus=" ">
                                     <label for="txtNome ">Nome</label>
                                 </div>
                                 <div class="form-floating mb-3 col-md-6 col-xl-4 ">
-                                    <input class="form-control form-radius " type="text " id="txtCPF " placeholder=" ">
+                                    <input [(ngModel)]="perfil.cpf" readonly class="form-control form-radius " type="text " id="txtCPF " placeholder=" ">
                                     <label for="txtCPF ">CPF</label>
                                 </div>
                                 <div class="form-floating mb-3 col-md-6 col-xl-6 ">
-                                    <input class="form-control form-radius " type="date " id="txtDataNascimento " placeholder=" ">
+                                    <input readonly [(ngModel)]="perfil.dataNascimento" class="form-control form-radius " type="date " id="txtDataNascimento " placeholder=" ">
                                     <label for="txtDataNascimento " class="d-inline d-sm-none d-md-inline d-lg-none ">Data
                                         Nascimento</label>
                                     <label for="txtDataNascimento " class="d-none d-sm-inline d-md-none d-lg-inline ">Data
@@ -133,11 +133,11 @@
                             <fieldset>
                                 <legend style="font-size:18px ">Contatos</legend>
                                 <div class="form-floating mb-3 col-md-8 ">
-                                    <input class="form-control form-radius " type="email " id="txtEmail " placeholder=" ">
+                                    <input [(ngModel)]="perfil.email" readonly class="form-control form-radius " type="email " id="txtEmail " placeholder=" ">
                                     <label for="txtEmail ">E-mail</label>
                                 </div>
                                 <div class="form-floating mb-3 col-md-6 ">
-                                    <input class="form-control form-radius " placeholder=" " type="text " id="txtTelefone ">
+                                    <input [(ngModel)]="perfil.telefone" readonly class="form-control form-radius " placeholder=" " type="text " id="txtTelefone ">
                                     <label for="txtTelefone ">Telefone</label>
                                 </div>
                             </fieldset>
@@ -146,20 +146,20 @@
                             <fieldset class="row gx-3 ">
                                 <legend style="font-size:18px ">Endereço</legend>
                                 <div class="form-floating mb-3 col-md-6 col-lg-6 '">
-                                    <input class="form-control form-radius" type="text" id="txtCEP" placeholder=" ">
+                                    <input [(ngModel)]="perfil.cep" readonly class="form-control form-radius" type="text" id="txtCEP" placeholder=" ">
                                     <label for="txtCEP">CEP</label>
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="form-floating mb-3 col-md-4">
-                                    <input class="form-control form-radius" type="text" id="txtNumero" placeholder=" ">
+                                    <input [(ngModel)]="perfil.numero" readonly class="form-control form-radius" type="text" id="txtNumero" placeholder=" ">
                                     <label for="txtNumero">Número</label>
                                 </div>
                                 <div class="form-floating mb-3 col-md-8">
-                                    <input class="form-control form-radius" type="text" id="txtComplemento" placeholder=" ">
+                                    <input [(ngModel)]="perfil.complemento" readonly class="form-control form-radius" type="text" id="txtComplemento" placeholder=" ">
                                     <label for="txtComplemento">Complemento</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control form-radius" type="text" id="txtReferencia" placeholder=" ">
+                                    <input [(ngModel)]="perfil.endereco" readonly class="form-control form-radius" type="text" id="txtReferencia" placeholder=" ">
                                     <label for="txtReferencia">Referência</label>
                                 </div>
                             </fieldset>

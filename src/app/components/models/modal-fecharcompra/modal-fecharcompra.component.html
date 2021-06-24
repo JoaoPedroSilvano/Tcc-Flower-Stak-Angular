@@ -19,20 +19,21 @@
           </h4>
           <hr>
           <h5>
-            <b>João Pedro</b><br>
-            Rua ana costa, 555<br>
-            santos/SP<br>
-            CEP 01.010-101
+            <b>{{perfil.nome}}</b><br>
+            {{perfil.endereco}}<br>
+            CEP {{perfil.cep}}
+            <br>
+            <b>Preço do Frete: R$ 20,00</b>
           </h5>
         </label>
             </div>
-            <div class="mb-4 mx-2 flex-even ">
+            <div class="mb-4 mx-2 flex-even">
                 <input type="radio " class="btn-check " name="endereco " autocomplete="off " id="end2 ">
                 <label class="btn btn-outline-success p-4 h-100 w-100 " for="end2 " style="border-radius: 30px; ">
           <h3>
             <b class="text-dark ">Escolher endereço</b><br>
             <hr>
-            <b style="font-size: 18px; ">Coloque seu Cep <br>parar acharmos o endereço</b> <br>
+            <b style="font-size: 18px; ">Coloque seu Endereço <br>para nós levarmos até você</b> <br>
             <input type="number " class="form-radius" style="border: 1px solid #ededed; ">
           </h3>
         </label>
@@ -47,6 +48,8 @@
             Avenida Ana Costa, 277<br>
             Santos/SP<br>
             CEP 01.010-101
+            <br>
+            <b>Preço do Frete: R$ 20,00</b>
           </h3>
         </label>
             </div>
@@ -70,14 +73,14 @@
     <div class="bodyContainer">
         <div class="d-flex justify-content-between flex-wrap pt-4 px-3 " style="border-radius: 30px 30px 0 0px;background-color: white; ">
 
-            <div class=" col-5 mb-4 mx-2 flex-even ">
-                <input type="radio " class="btn-check " name="pagamento " autocomplete="off " id="pag1 ">
-                <label class="btn btn-outline-danger p-4 h-100 w-100 " for="pag1 " style="border-radius:20px ; ">
+            <div (click)="atualizarMetodoPagamento('cartao')" class=" col-5 mb-4 mx-2 flex-even ">
+                <input value="Cartão de Credito/Débito" type="radio" class="btn-check" name="pagamento" autocomplete="off " id="pag1">
+                <label [ngClass]="{'btn-danger': this.gerarPedido.metodoPagamento === 'Cartão de Crédito/Débito'}" class="btn btn-outline-danger p-4 h-100 w-100 " for="pag1 " style="border-radius:20px ; ">
           <h3>
             <b class="text-dark ">Cartão de Crédito</b>
           </h3>
           <hr>
-          <form action=" ">
+          <div action=" ">
             <div class="form-floating mb-3 ">
               <input type="text " id="txtNome " class="form-control " placeholder=" " autofocus=" ">
               <label for="txtNome " class="text-black-50 ">Nome no Cartão</label>
@@ -109,32 +112,33 @@
               </select>
                 <label for="selParcelas " class="text-black-50 ">Parcelamento</label>
             </div>
-            </form>
-
-            </label>
         </div>
-
-        <div class=" col-5 mb-4 mx-2 flex-even ">
-            <input type="radio " class="btn-check " name="pagamento " autocomplete="off " id="pag2 ">
-            <label class="btn btn-pag btn-outline-success p-4 h-100 w-100 " for="pag2 ">
-          <h3>
-            <b class="text-dark ">Dinheiro</b>
-          </h3>
-          <hr>
-          <form action=" ">
-            <h4>Valor da Compra: <b>R$ 63,86</b></h4>
-            <br>
-            <p>
-              Se precisar de troco, informe no campo abaixo.
-            </p>
-            <div class="form-floating mb-3 ">
-              <input type="text " id="txtTroco " class="form-control " placeholder=" ">
-              <label for="txtTroco " class="text-black-50 ">Troco para quanto?</label>
-        </div>
-        </form>
 
         </label>
     </div>
+
+    <div (click)="atualizarMetodoPagamento('dinheiro')" class=" col-5 mb-4 mx-2 flex-even ">
+        <input value="Dinheiro" type="radio" class="btn-check" name="pagamento" autocomplete="off " id="pag1">
+        <label [ngClass]="{'btn-success': this.gerarPedido.metodoPagamento === 'Dinheiro'}" class="btn btn-pag btn-outline-success p-4 h-100 w-100 " for="pag2 ">
+          <h3>
+            <b class="text-dark ">Dinheiro</b>
+          </h3>
+          <hr class="text-dark">
+          <div action=" ">
+            <h4 class="text-dark">Valor da Compra: <b>R$ {{data}}</b></h4>
+            <br>
+            <p class="text-dark">
+              Valor a Pagar:
+            </p>
+            <div class="form-floating mb-3 ">
+              <input [(ngModel)]="gerarPedido.valorPagar" type="text " id="txtTroco " class="form-control "
+                placeholder=" ">
+              <label for="txtTroco " class="text-black-50 ">Troco para quanto?</label>
+    </div>
+</div>
+
+</label>
+</div>
 
 </div>
 
@@ -142,7 +146,7 @@
     <a (click)="steps = '1'" class="pointer-event btn btn1 btn-cadast btn-md mb-4 ">
         Voltar aos Endereços
       </a>
-    <a (click)="steps = '3'" class="pointer-event btn btn1 btn-cadast btn-md ms-2 mb-4 ">Finalizar</a>
+    <a (click)="finalizarPedido()" class="pointer-event btn btn1 btn-cadast btn-md ms-2 mb-4 ">Finalizar</a>
 </div>
 </div>
 </div>
@@ -151,7 +155,7 @@
     <h2 class="text-black-50">Obrigado!</h2>
     <hr>
     <h4 class="text-black-50">Anote o número de seu pedido:</h4>
-    <h2 class="text-danger "><b>004571</b></h2>
+    <h2 class="text-danger "><b>{{gerarPedido.descricao}}</b></h2>
     <p class="text-black-50">Em até 2 horas, seu pedido será entregue. Qualquer dúvida sobre este pedido, entre em contato conosco e informe o número do pedido para que possamos te ajudar.</p>
     <p>Tenha um ótimo dia!</p>
     <p class="text-black-50">
