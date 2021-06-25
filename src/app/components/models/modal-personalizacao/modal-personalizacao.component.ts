@@ -15,10 +15,12 @@ export class ModalPersonalizacaoComponent implements OnInit {
   ListaTipos: Array<TipoProduto>;
   TiposAdicionados: Array<TipoProduto>;
   produtosId: Array<Number>;
+  ListaTiposSemBuque: Array<TipoProduto>;
 
   constructor(private TipoService: TipoProdutoService, private dialogRef: MatDialogRef<ModalPersonalizacaoComponent>) {
     this.steps = '1';
     this.ListaTipos = new Array<TipoProduto>();
+    this.ListaTiposSemBuque = new Array<TipoProduto>();
     this.TiposAdicionados = new Array<TipoProduto>();
     this.produtosId = new Array<Number>();
   }
@@ -55,8 +57,8 @@ export class ModalPersonalizacaoComponent implements OnInit {
   AdicionarAoCarrinho() {
     if(this.TiposAdicionados.length > 0)
     {
-    let result = this.ListaTipos.filter(x => x.tipo === 'Buquê Personalizado');
-    this.produtosId.push(result[0].id);
+    let result = this.ListaTipos.filter(x => x.id === 3);
+    this.produtosId.push(3);
     localStorage.setItem('ItensCarrinho', JSON.stringify(this.produtosId));
     Swal.fire('Adicionado ao Carrinho!', '', 'success').then(() => {
       this.dialogRef.close();

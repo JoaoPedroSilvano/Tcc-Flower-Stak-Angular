@@ -84,13 +84,11 @@ export class PaginaPerfilComponent implements OnInit {
 
   getPerfil() {
     this.clienteService.BuscarClientePorId(Number(localStorage.getItem('idCliente'))).subscribe(resp => {
-      console.log('resp', resp[0])
-      this.perfil = resp[0];
+      console.log('resp', resp)
+      this.perfil = resp;
       console.log(this.perfil);
     }, error => {
-      localStorage.removeItem('idCliente');
-      localStorage.removeItem('Funcao')
-      location.reload();
+      Swal.fire('erro ao buscar dados do perfil', '', 'warning')
     })
   }
 

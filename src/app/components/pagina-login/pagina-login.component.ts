@@ -60,12 +60,12 @@ export class PaginaLoginComponent implements OnInit {
   login() {
     this.clienteService.Authentication(this.Login.Email, this.Login.Senha).subscribe(resp => {
       console.log(resp);
-      if (resp.length > 0) {
-        localStorage.setItem('idCliente', resp[0].id);
-        localStorage.setItem('Funcao', resp[0].tipoRole);
+      if (resp !== null) {
+        localStorage.setItem('idCliente', resp.id);
+        localStorage.setItem('Funcao', resp.tipoRole);
         Swal.fire('Logado!', '', 'success').then(() => {
           localStorage.setItem('ItensCarrinho', JSON.stringify(this.produtosId))
-          this.router.navigate(['/', 'meuperfil']).then(x => location.reload());
+          this.router.navigate(['/', 'meuperfil']);
         });
       } else {
         Swal.fire('Login ou Senha Incorretos!', '', 'error')

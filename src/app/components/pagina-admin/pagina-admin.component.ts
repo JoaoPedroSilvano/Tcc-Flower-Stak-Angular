@@ -164,6 +164,7 @@ export class PaginaAdminComponent implements OnInit {
     }
     return this.tipoprodutoService.inserirProduto(this.GerarTipoProduto).subscribe(resp => {
       console.log('respostaCadastroTipoProduto', resp);
+      this.buscarTipos();
       Swal.fire('Tipo Produto Inserido', '', 'success').then(() => {
         this.GerarTipoProduto = new TipoProduto();
       });;

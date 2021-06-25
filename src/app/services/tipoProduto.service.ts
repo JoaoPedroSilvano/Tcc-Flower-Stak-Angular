@@ -18,6 +18,10 @@ export class TipoProdutoService {
     const endpoint = 'BuscarTiposProdutos';
     return this.http.get<any>(this.environment + endpoint);
   }
+  BuscarTiposProdutosSemBuque(): Observable<any> {
+    const endpoint = 'BuscarTiposProdutosSemBuque';
+    return this.http.get<any>(this.environment + endpoint);
+  }
   buscarProdutosPorId(id: number): Observable<any> {
     const endpoint = `BuscarTiposProduto/${id}`;
     return this.http.get<any>(this.environment + endpoint);

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Produtos } from '../models/produtos';
 
@@ -9,6 +9,12 @@ import { Produtos } from '../models/produtos';
 })
 export class ProdutoService {
 
+  corsHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Access-Control-Allow-Origin': 'http://localhost:8888/'
+  });
+  
   environment = 'https://localhost:5001/Produto/'
   
   constructor(private http: HttpClient) { }

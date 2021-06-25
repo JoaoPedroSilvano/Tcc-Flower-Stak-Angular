@@ -40,7 +40,7 @@ export class ModalFecharCompraComponent implements OnInit {
 
   getPerfil() {
     this.clienteService.BuscarClientePorId(Number(localStorage.getItem('idCliente'))).subscribe(resp => {
-      this.perfil = resp[0];
+      this.perfil = resp;
     })
   }
 
