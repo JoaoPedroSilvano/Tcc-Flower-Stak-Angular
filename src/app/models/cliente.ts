@@ -5,6 +5,7 @@ export class Cliente {
     senha: string;
     cep: string;
     cpf: string;
+    tipoRole?: string;
     endereco: string;
     numero?: string;
     complemento?: string;

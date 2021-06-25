@@ -1,15 +1,18 @@
 import { ItensPedidos } from "./itensPedidos";
 
 export class Pedidos {
+    id?: number;
     activeToggle?: boolean;
     descricao?: string;
     ProdutosId?: Array<Number>;
     dataPedido?: string;
+    endereco?: string;
     valorFrete?: string;
-    valorPagar?: number;
+    valorPagar: number;
     valorTotalComFrete?: string;
     metodoPagamento?: string;
     valorTotal?: string;
+    idCliente?: number;
 
     constructor() {
         this.activeToggle = false;

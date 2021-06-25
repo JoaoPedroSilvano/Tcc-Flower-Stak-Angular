@@ -37,6 +37,7 @@ export class PaginaPerfilComponent implements OnInit {
         metodoPagamento: 'credito',
         dataPedido: '20/07/2021',
         descricao: '0001',
+        valorPagar: 20,
         // produtos: [
         //   {
         //     nomeProduto: 'Rosa',
@@ -86,11 +87,16 @@ export class PaginaPerfilComponent implements OnInit {
       console.log('resp', resp[0])
       this.perfil = resp[0];
       console.log(this.perfil);
+    }, error => {
+      localStorage.removeItem('idCliente');
+      localStorage.removeItem('Funcao')
+      location.reload();
     })
   }
 
   sair() {
     localStorage.removeItem('idCliente')
+    localStorage.removeItem('Funcao')
     this.router.navigate(['/', 'login']).then(() => location.reload())
   }
 

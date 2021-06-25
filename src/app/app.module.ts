@@ -29,6 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask'
+import { NgSelectModule } from '@ng-select/ng-select';
+import { PaginaAdminComponent } from './components/pagina-admin/pagina-admin.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { NgxMaskModule } from 'ngx-mask'
     MenuFooterComponent,
     ModalFecharCompraComponent,
     ModalPersonalizacaoComponent,
+    PaginaAdminComponent,
   ],
   exports: [
     MenuGeralComponent,
@@ -71,6 +74,7 @@ import { NgxMaskModule } from 'ngx-mask'
     MatDialogModule,
     MatIconModule,
     NgxMaskModule,
+    NgSelectModule,
   ],
   providers: [],
   bootstrap: [

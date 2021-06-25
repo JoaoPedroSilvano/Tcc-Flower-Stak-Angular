@@ -8,10 +8,14 @@ import { PaginaContatoComponent } from './components/pagina-contato/pagina-conta
 import { PaginaLoginComponent } from './components/pagina-login/pagina-login.component';
 import { PaginaPerfilComponent } from './components/pagina-perfil/pagina-perfil.component';
 import { PaginaCarrinhoComponent } from './components/pagina-carrinho/pagina-carrinho.component';
+import { PaginaAdminComponent } from './components/pagina-admin/pagina-admin.component';
+
+let tipoAdmin: boolean;
 
 const routes: Routes = [
   { path: '', component: PaginaInicialComponent },
   { path: 'inicio', component: PaginaInicialComponent },
+  { path: 'admin', component: PaginaAdminComponent },
   { path: 'flores', component: PaginaFloresComponent },
   { path: 'sobrenos', component: PaginaSobrenosComponent },
   { path: 'contato', component: PaginaContatoComponent },

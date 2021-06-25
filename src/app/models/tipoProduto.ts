@@ -1,11 +1,13 @@
 export class TipoProduto {
     id: number;
     tipo: string;
-    quantidade: string;
+    quantidade: number;
+    valor?: number;
+    foto?: string;
 
     constructor() {
         this.id = 0;
         this.tipo = '';
-        this.quantidade = '';
+        this.quantidade = 0;
     }
 }

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { mediumModal } from '../../../utils/modal-size';
 import { Produtos } from '../../models/produtos';
 import { ProdutoService } from '../../services/produto.services';
 import { TipoProdutoService } from '../../services/tipoProduto.service';
+import { ModalPersonalizacaoComponent } from '../models/modal-personalizacao/modal-personalizacao.component';
 @Component({
   selector: 'app-pagina-flores',
   templateUrl: './pagina-flores.component.html',
@@ -17,7 +20,7 @@ export class PaginaFloresComponent implements OnInit {
   filtroId: number;
   produtosId: Array<Number>;
 
-  constructor(private router: Router, private tipoProdutoService: TipoProdutoService, private produtoService: ProdutoService) {
+  constructor(private dialog: MatDialog, private router: Router, private tipoProdutoService: TipoProdutoService, private produtoService: ProdutoService) {
     this.flores = new Array<Produtos>();
     this.filtroId = 0;
     this.produtosId = new Array<Number>();
@@ -70,8 +73,14 @@ export class PaginaFloresComponent implements OnInit {
     })
   }
 
-  inserirProdutoNoCarrinhoLocal(idProduto: number) {
-    Swal.fire({
+  inserirProdutoNoCarrinhoLocal(idProduto: number, type: string) {
+    if(type === 'Buquê Personalizado')
+    {
+      return this.dialog.open(ModalPersonalizacaoComponent, {
+        ...mediumModal,
+      })
+    }
+    return Swal.fire({
       title: 'Você deseja adicionar ao carrinho??',
       icon: 'info',
       showCancelButton: true,
@@ -84,8 +93,9 @@ export class PaginaFloresComponent implements OnInit {
         this.produtosId.push(idProduto);
         console.log(this.produtosId);
         localStorage.setItem('ItensCarrinho', JSON.stringify(this.produtosId));
+        () => Swal.fire('Adicionado ao carrinho!', '', 'success');
       }
-    }).then(() => Swal.fire('Adicionado ao carrinho!', '', 'success'));
+    })
 
   }
 }

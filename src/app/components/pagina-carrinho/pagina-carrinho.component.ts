@@ -69,7 +69,7 @@ export class PaginaCarrinhoComponent implements OnInit {
       console.log(itens);
       this.produtoService.buscarProdutosPorId(itens).subscribe(resp => {
         this.ProdutosNoCarrinho.push(resp[0]);
-        valorTotal += Number(resp[0].valor);
+        this.valorTotal += Number(resp[0].valor);
         console.log('resp', Number(resp[0].valor))
       })
     })

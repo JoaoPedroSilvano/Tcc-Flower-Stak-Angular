@@ -1,0 +1,84 @@
+<!--contato-->
+
+<div class="container">
+
+    <body>
+        <h1>ADMIN PANEL</h1>
+        <main>
+            <h2 class="text-center" style="margin-bottom: 60px;margin-top: 80px;">Bem Vindo Administrador do Sistema!
+            </h2>
+            <div class="container" style="margin-bottom: 30px;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="cursorlink nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <button (click)="MudarInputs = 'step2'" class="cursorlink btn-cadast" style="width: 50%" id="v-pills-home-tab" aria-selected="true">Adicionar Produtos</button>
+                            <button (click)="MudarInputs = 'step1'" class="cursorlink btn-cadast mt-3" style="width: 50%" id="v-pills-profile-tab" data-toggle="pill" role="tab" aria-controls="v-pills-profile" aria-selected="false">Adicionar Tipo de
+                                Produtos</button>
+                            <button (click)="MudarInputs = 'step3'" class="cursorlink btn-cadast mt-3" style="width: 50%" id="v-pills-profile-tab" data-toggle="pill" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                Pedidos </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="tab-content">
+                            <div class="justify-content-center align-items-center">
+                                <div class="form-row">
+                                    <div *ngIf="MudarInputs == 'step1'" class="form-group col-md-9">
+                                        <label for="nome"><strong>Tipo</strong></label>
+                                        <input [(ngModel)]="GerarTipoProduto.tipo" type="text" class="mt-1 form-control form-radius" id="tipo" placeholder="Digite o Tipo:">
+                                        <label for="email"><strong>Valor</strong></label>
+                                        <input [(ngModel)]="GerarTipoProduto.valor" type="email" class="mt-1 form-control form-radius" id="valor" placeholder="Digite o Valor:">
+                                        <label for="assunto"><strong>Foto</strong></label>
+                                        <input (change)="onGetImage('tipoproduto', $event)" #input type="file" class="mt-1 form-control form-radius" id="foto" placeholder="Digite a foto:">
+                                        <div class="form-row">
+                                            <div class="col-sm-12 text-center marginbutton">
+                                                <button (click)="CadastroTipoProduto()" type="submit" class="mt-2 btn btn1 btn-primary buttonform">Cadastrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="MudarInputs == 'step2'" class="form-group col-md-9">
+                                        <label for="nome"><strong>nome</strong></label>
+                                        <input [(ngModel)]="GerarProduto.nome" type="text" class="mt-1 form-control form-radius" id="nome" placeholder="Digite o nome:">
+                                        <label for="email"><strong>descricao</strong></label>
+                                        <input [(ngModel)]="GerarProduto.descricao" type="email" class="mt-1 form-control form-radius" id="desc" placeholder="Digite o descricao:">
+                                        <label for="email"><strong>valor</strong></label>
+                                        <input [(ngModel)]="GerarProduto.valor" type="email" class="mt-1 form-control form-radius" id="valor" placeholder="Digite o Valor:">
+                                        <label for="email"><strong>Selecionar Tipos</strong></label>
+                                        <div>
+                                            <ng-select [searchable]="true" id="tipos" [multiple]="true" placeholder="Selecione o tipo..." class="my" name="notas-fiscais" [(ngModel)]="this.GerarProduto.tipoProdutosId" bindLabel="numero" notFoundText="Nenhum item encontrado">
+                                                <ng-option *ngFor="let tipo of ListaTipos" [value]="tipo.id">
+                                                    {{ tipo.tipo }}
+                                                </ng-option>
+                                            </ng-select>
+                                        </div>
+                                        <label for="assunto"><strong>Foto</strong></label>
+                                        <input (change)="onGetImage('produto', $event)" type="file" #input class="mt-1 form-control form-radius" id="foto" placeholder="Digite a foto:">
+                                        <div class="form-row">
+                                            <div class="col-sm-12 text-center marginbutton">
+                                                <button (click)="cadastroProduto()" type="submit" class="mt-2 btn btn1 btn-primary buttonform">Cadastrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="MudarInputs == 'step3'" class="form-group col-md-9">
+                                        <label for="assunto"><strong>Selecione o Pedido</strong></label>
+                                        <div>
+                                            <ng-select [(ngModel)]="idPedido" [searchable]="true" id="pedidos" [multiple]="true" placeholder="Selecione os pedidos..." class="my" name="pedidos" bindLabel="pedido" notFoundText="Nenhum item encontrado">
+                                                <ng-option *ngFor="let pedido of ListaPedidos" [value]="pedido.id">
+                                                    {{ pedido.descricao }}
+                                                </ng-option>
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade show" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                <input />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</div>
+
+<!-- div contato-->

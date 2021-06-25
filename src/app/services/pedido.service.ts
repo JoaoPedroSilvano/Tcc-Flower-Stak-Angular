@@ -14,11 +14,11 @@ export class PedidoService {
   
   constructor(private http: HttpClient) { }
   /* GET ------------------------------------------------------*/
-  buscarProdutos(): Observable<any> {
+  buscarPedidos(): Observable<any> {
     const endpoint = 'BuscarPedidos';
     return this.http.get<any>(this.environment + endpoint);
   }
-  buscarProdutosPorId(id: number): Observable<any> {
+  buscarPedidosPorIdCliente(id: number): Observable<any> {
     const endpoint = `BuscarPedidoPorId/${id}`;
     return this.http.get<any>(this.environment + endpoint);
   }

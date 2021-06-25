@@ -4,7 +4,7 @@ import { Cliente } from '../../../models/cliente';
 import { Pedidos } from '../../../models/pedidos';
 import { ClienteService } from '../../../services/cliente.services';
 import { PedidoService } from '../../../services/pedido.service';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modal-fecharcompra.component.css']
 })
 export class ModalFecharCompraComponent implements OnInit {
- 
+
 
   steps: string;
   gerarPedido: Pedidos;
@@ -58,29 +58,42 @@ export class ModalFecharCompraComponent implements OnInit {
   }
 
   finalizarPedido() {
-    this.gerarPedido.ProdutosId = JSON.parse(String(localStorage.getItem("ItensCarrinho")));
-    this.gerarPedido.valorTotal = String(this.data);
-    this.gerarPedido.valorFrete = '20';
-    console.log(this.gerarPedido);
-    Swal.fire({
-      title: 'Você deseja finalizar o pedido?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      cancelButtonText: 'Voltar',
-      confirmButtonText: 'Adicionar ao Carrinho'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.pedidoService.inserirProduto(this.gerarPedido).subscribe(resp => {
-          this.gerarPedido.descricao = resp.descricao;
-          console.log(resp)
-          this.steps = '3'
-          localStorage.removeItem('ItensCarrinho');
-        }, error => {
-          Swal.fire('Erro ao Finalizar Pedido!', '', 'warning');
+    if (this.gerarPedido.valorPagar < this.data) {
+      Swal.fire('O preço a pagar é menor que o valor total!', '', 'warning');
+    } else {
+      if (this.gerarPedido.metodoPagamento === "Dinheiro" || this.gerarPedido.metodoPagamento === "Cartão de Crédito/Débito") {
+        this.gerarPedido.ProdutosId = JSON.parse(String(localStorage.getItem("ItensCarrinho")));
+        this.gerarPedido.valorTotal = String(this.data);
+        this.gerarPedido.valorFrete = '20';
+        this.gerarPedido.idCliente = Number(localStorage.getItem("idCliente"));
+        console.log(this.gerarPedido);
+        Swal.fire({
+          title: 'Você deseja finalizar o pedido?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          cancelButtonText: 'Voltar',
+          confirmButtonText: 'Finalizar o Pedido'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.pedidoService.inserirProduto(this.gerarPedido).subscribe(resp => {
+              this.gerarPedido.descricao = resp.descricao;
+              console.log(resp)
+              this.steps = '3'
+              localStorage.removeItem('ItensCarrinho');
+            }, error => {
+              Swal.fire('Erro ao Finalizar Pedido!', '', 'warning');
+            });
+          }
         });
+      } else {
+        Swal.fire('Selecione um metodo de pagamento', '', 'warning')
       }
-    });
+    }
+  }
+
+  VerificarValor() {
+    this.steps = '2';
   }
 }

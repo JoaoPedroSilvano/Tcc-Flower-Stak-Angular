@@ -26,7 +26,7 @@ export class PaginaContatoComponent implements OnInit {
     }, error => {
       console.log(error.status);
       if (error.status === 200) {
-        Swal.fire('Email enviado com sucesso!', '', 'success')
+        Swal.fire('Email enviado com sucesso!', '', 'success').then(() => this.GerarEnvioEmail = new EnvioEmailType());
       } else {
 
         Swal.fire('Erro ao Contatar a flowerStak', '', 'error');

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PaginaInicialComponent implements OnInit {
   
   imagepath1 = '/assets/images/paginainicial/florcapa1.jpg';
-  imagepath2 = '/assets/images/paginainicial/florcapa2.jpeg';
+  imagepath2 = '/assets/images/paginainicial/florcapa2.jpg';
   imagepath3 = '/assets/images/paginainicial/florcapa3.jpg' ;
 
   itens = [
